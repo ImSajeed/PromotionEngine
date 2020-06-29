@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace PromotionEngine
 {
@@ -30,6 +32,17 @@ namespace PromotionEngine
             Order order2 = new Order(2, new List<Product>(){ new Product("A"), new Product("A"), new Product("A"), new Product("A"), new Product("A"), new Product("B"),  new Product("B"), new Product("B"), new Product("B"), new Product("B"), new Product("C")});
             Order order3 = new Order(3, new List<Product>(){ new Product("A"), new Product("A"), new Product("A"), new Product("B"), new Product("B"),new Product("B"),new Product("B"),new Product("B"),new Product("C"),new Product("D")});
             orders.AddRange(new Order[]{order1, order2, order3});
+
+            //check if order meets promotion
+            foreach(Order ord in orders)
+            {
+                List<decimal> promoprices = promotions
+                    .Select(promo => ComputePromotion.GetTotalPrice(ord, promo))
+                    .ToList();
+                decimal origprice = ord.Products.Sum(x=>x.Price);
+                decimal promoprice = promoprices.Sum();
+                Console.WriteLine($"OrderID: {ord.OrderID} => Final price: {(origprice - promoprice).ToString("0.00")}");
+            }
 
             
         }
