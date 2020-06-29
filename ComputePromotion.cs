@@ -12,6 +12,7 @@ public static class ComputePromotion
             .Where(grp=> prom.ProductInfo.Any(y=>grp.Key==y.Key && grp.Count()>=y.Value))
             .Select(grp=> grp.Count())
             .Sum();
+
         //get count of promoted products from promotion
         int ppc = prom.ProductInfo.Sum(kvp=> kvp.Value);
         while(copp >= ppc)
@@ -19,6 +20,12 @@ public static class ComputePromotion
             d +=  prom.PromoPrice;
             copp -= ppc;
         }
+        if( d != 0M){
+            d = d + copp * new Product(prom.ProductInfo.Keys.FirstOrDefault()).Price;
+        }else{
+             d = d +  new Product(prom.ProductInfo.Keys.FirstOrDefault()).Price;
+        }
+        
         return d;
     }
 }

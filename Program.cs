@@ -39,9 +39,9 @@ namespace PromotionEngine
                 List<decimal> promoprices = promotions
                     .Select(promo => ComputePromotion.GetTotalPrice(ord, promo))
                     .ToList();
-                decimal origprice = ord.Products.Sum(x=>x.Price);
+                //decimal origprice = ord.Products.Sum(x=>x.Price);
                 decimal promoprice = promoprices.Sum();
-                Console.WriteLine($"OrderID: {ord.OrderID} => Final price: {(origprice - promoprice).ToString("0.00")}");
+                Console.WriteLine($"OrderID: {ord.OrderID} => Final price: {promoprice.ToString("0.00")}");
             }
 
             
