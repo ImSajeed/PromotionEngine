@@ -18,6 +18,8 @@ Active Promotions
 3 of A's for 130
 2 of B's for 45
 C & D for 30
+
+
 Scenario A
 
 1 * A 50
@@ -25,6 +27,8 @@ Scenario A
 1 * C 20
 ======
 Total 100
+
+
 Scenario B
 
 5 * A 130 + 2*50
@@ -32,6 +36,8 @@ Scenario B
 1 * C 20
 ======
 Total 370
+
+
 Scenario C
 
 3 * A 130
